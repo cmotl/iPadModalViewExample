@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModalViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <modalDelegate> {
+    ModalViewController *theModalViewController;
+}
+
+@property (nonatomic, strong) IBOutlet ModalViewController *theModalViewController;
+
+-(IBAction)showModalViewController:(id)sender;
 
 @end

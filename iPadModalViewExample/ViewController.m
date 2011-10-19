@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @implementation ViewController
+@synthesize theModalViewController;
 
 - (void)didReceiveMemoryWarning
 {
@@ -24,37 +25,25 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return YES;
+}
+
+-(IBAction)showModalViewController:(id)sender {
+    
+    theModalViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    theModalViewController.delegate = self;
+    [self presentModalViewController:theModalViewController animated:YES];
+    
+    theModalViewController.view.superview.frame = CGRectMake(0, 0, 630, 340);
+    theModalViewController.view.superview.center = CGPointMake(self.view.bounds.size.width/2,self.view.bounds.size.height/2);
+}
+
+- (void)dismissModalViewController:(UIViewController *)viewController {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
